@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bellaria Style - Sweet Bakery</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --teal: #1ebdbd;
+            --pink: #ff85a2;
+            --white: #ffffff;
+            --text-dark: #4a4a4a;
+            --text-light: #888888;
+            --font-cursive: 'Grand Hotel', cursive;
+            --font-sans: 'Montserrat', sans-serif;
+            --bg-light: #fdfdfd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        /* --- Scalloped/Wavy Border Effects --- */
+        .scalloped-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: radial-gradient(circle at 15px 0, transparent 15px, var(--white) 16px);
+            background-size: 30px 30px;
+            background-repeat: repeat-x;
+            z-index: 10;
+        }
+        
+        .scalloped-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: radial-gradient(circle at 15px 30px, transparent 15px, var(--white) 16px);
+            background-size: 30px 30px;
+            background-repeat: repeat-x;
+            z-index: 10;
+        }
+
+        /* --- Navigation --- */
+        .top-bar {
+            background-color: var(--white);
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu li a:hover, .nav-menu li a.active {
+            color: var(--teal);
+        }
+
+        /* Center Logo Badge Overlapping */
+        .center-logo-wrapper {
+            margin: 0 4rem;
+            position: relative;
+        }
+
+        .logo-badge {
+            position: absolute;
+            top: -15px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 180px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 4px dashed var(--teal);
+            outline: 6px solid var(--white);
+            z-index: 101;
+        }
+
+        .logo-badge h1 {
+            font-family: var(--font-cursive);
+            font-size: 3.5rem;
+            color: var(--text-dark);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .logo-ribbon {
+            background-color: var(--pink);
+            color: var(--white);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            padding: 4px 15px;
+            border-radius: 20px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 80vh;
+            background: url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?q=80&w=2070&auto=format&fit=crop') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .welcome-diamond {
+            position: relative;
+            z-index: 5;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 4rem;
+            text-align: center;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .welcome-title {
+            font-family: var(--font-cursive);
+            font-size: 4rem;
+            color: var(--teal);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+            max-width: 250px;
+        }
+
+        /* --- Common Section Styles --- */
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-cursive);
+            font-size: 3.5rem;
+            color: var(--text-dark);
+        }
+
+        .ribbon-divider {
+            height: 2px;
+            background-color: var(--pink);
+            width: 50px;
+            margin: 10px auto;
+            position: relative;
+        }
+        
+        .ribbon-divider::after {
+            content: '◆';
+            color: var(--pink);
+            position: absolute;
+            top: -9px;
+            left: 20px;
+            font-size: 14px;
+        }
+
+        /* --- Specialties Section --- */
+        .specialties {
+            padding: 6rem 10% 8rem;
+            text-align: center;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .badges-grid {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .badge-item {
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .badge-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px dashed var(--pink);
+            padding: 10px;
+            margin: 0 auto 1.5rem;
+            transition: transform 0.4s ease;
+        }
+
+        .badge-item:hover .badge-circle {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .badge-circle .inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #f6fdfcf0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .badge-item h3 {
+            font-family: var(--font-cursive);
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-item p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* --- NEW: Our Products Section --- */
+        .products-section {
+            padding: 6rem 10%;
+            background-color: var(--teal); /* Teal background to contrast the white top */
+            position: relative;
+        }
+
+        .products-section .section-header h2 {
+            color: var(--white);
+        }
+
+        .products-section .ribbon-divider, 
+        .products-section .ribbon-divider::after {
+            background-color: var(--white);
+            color: var(--white);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .product-overlay {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: bottom 0.3s ease;
+        }
+
+        .product-card:hover .product-overlay {
+            bottom: 0;
+        }
+
+        .btn-cart {
+            background-color: var(--pink);
+            color: var(--white);
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .btn-cart:hover {
+            background-color: #ff6b8b;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-family: var(--font-cursive);
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            color: var(--teal);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+            .nav-menu { display: none; }
+            .logo-badge { position: relative; top: 0; transform: none; left: 0; }
+            .top-bar { height: auto; padding: 20px 0; }
+            .welcome-diamond { clip-path: none; aspect-ratio: auto; border-radius: 20px; padding: 3rem 2rem; }
+            .badges-grid { gap: 2rem; }
+            .products-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-bar">
+        <ul class="nav-menu">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li><a href="#">Portfolio</a></li>
+        </ul>
+
+        <div class="center-logo-wrapper">
+            <div class="logo-badge">
+                <h1>Luxe</h1>
+                <div class="logo-ribbon">Catering</div>
+            </div>
+        </div>
+
+        <ul class="nav-menu">
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Contacts</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="scalloped-top"></div>
+        
+        <div class="welcome-diamond gs-reveal">
+            <h2 class="welcome-title">Welcome<br>to Dessert</h2>
+            <div class="ribbon-divider"></div>
+            <p class="welcome-text">We offer a great range of different flavored bite-size pastries and cakes.</p>
+        </div>
+
+        <div class="scalloped-bottom"></div>
+    </header>
+
+    <section class="specialties">
+        <div class="section-header gs-reveal">
+            <h2>Our Specialties</h2>
+            <div class="ribbon-divider"></div>
+        </div>
+
+        <div class="badges-grid">
+            <div class="badge-item gs-stagger">
+                <div class="badge-circle">
+                    <div class="inner">🍰</div>
+                </div>
+                <h3>Occasion Cakes</h3>
+                <div class="ribbon-divider"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+            <div class="badge-item gs-stagger">
+                <div class="badge-circle">
+                    <div class="inner">🧁</div>
+                </div>
+                <h3>Cupcakes</h3>
+                <div class="ribbon-divider"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+            <div class="badge-item gs-stagger">
+                <div class="badge-circle">
+                    <div class="inner">🍪</div>
+                </div>
+                <h3>Macarons</h3>
+                <div class="ribbon-divider"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+            <div class="badge-item gs-stagger">
+                <div class="badge-circle">
+                    <div class="inner">🍮</div>
+                </div>
+                <h3>Small Cakes</h3>
+                <div class="ribbon-divider"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+        
+        <div class="scalloped-bottom" style="background: radial-gradient(circle at 15px 30px, transparent 15px, var(--teal) 16px);"></div>
+    </section>
+
+    <section class="products-section">
+        <div class="section-header gs-reveal">
+            <h2>Our Products</h2>
+            <div class="ribbon-divider"></div>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card gs-product-stagger">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1000&auto=format&fit=crop" alt="Berry Cake">
+                    <div class="product-overlay">
+                        <a href="#" class="btn-cart">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Berry Layer Cake</h3>
+                    <div class="product-price">$45.00</div>
+                </div>
+            </div>
+
+            <div class="product-card gs-product-stagger">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?q=80&w=1000&auto=format&fit=crop" alt="Pink Macarons">
+                    <div class="product-overlay">
+                        <a href="#" class="btn-cart">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Rose Macarons</h3>
+                    <div class="product-price">$12.50</div>
+                </div>
+            </div>
+
+            <div class="product-card gs-product-stagger">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=1000&auto=format&fit=crop" alt="Chocolate Cupcake">
+                    <div class="product-overlay">
+                        <a href="#" class="btn-cart">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Choco Swirl Cupcake</h3>
+                    <div class="product-price">$4.00</div>
+                </div>
+            </div>
+
+            <div class="product-card gs-product-stagger">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?q=80&w=1000&auto=format&fit=crop" alt="Fruit Tart">
+                    <div class="product-overlay">
+                        <a href="#" class="btn-cart">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Summer Fruit Tart</h3>
+                    <div class="product-price">$28.00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scalloped-bottom" style="background: radial-gradient(circle at 15px 30px, transparent 15px, var(--bg-light) 16px);"></div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Logo pop-in
+        gsap.from(".logo-badge", {
+            y: -50,
+            opacity: 0,
+            rotation: -10,
+            duration: 1.2,
+            ease: "elastic.out(1, 0.5)"
+        });
+
+        // Diamond box
+        gsap.from(".welcome-diamond", {
+            scale: 0.8,
+            opacity: 0,
+            duration: 1.5,
+            delay: 0.3,
+            ease: "power3.out"
+        });
+
+        // Headers reveal
+        gsap.utils.toArray(".gs-reveal").forEach(function(elem) {
+            gsap.from(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 80%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1
+            });
+        });
+
+        // Specialties Stagger
+        gsap.from(".gs-stagger", {
+            scrollTrigger: {
+                trigger: ".badges-grid",
+                start: "top 80%",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "back.out(1.2)"
+        });
+
+        // NEW: Products Stagger
+        gsap.from(".gs-product-stagger", {
+            scrollTrigger: {
+                trigger: ".products-grid",
+                start: "top 80%",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power2.out"
+        });
+    </script>
+</body>
+</html>
